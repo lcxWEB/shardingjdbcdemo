@@ -1,0 +1,2 @@
+# shardingjdbcdemo
+study sharding-jdbc
