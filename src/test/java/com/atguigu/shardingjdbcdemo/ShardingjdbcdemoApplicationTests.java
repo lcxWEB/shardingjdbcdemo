@@ -1,7 +1,9 @@
 package com.atguigu.shardingjdbcdemo;
 
 import com.atguigu.shardingjdbcdemo.entity.Course;
+import com.atguigu.shardingjdbcdemo.entity.User;
 import com.atguigu.shardingjdbcdemo.mapper.CourseMapper;
+import com.atguigu.shardingjdbcdemo.mapper.UserMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.junit.jupiter.api.Test;
@@ -16,6 +18,24 @@ class ShardingjdbcdemoApplicationTests {
 
     @Autowired
     private CourseMapper courseMapper;
+    @Autowired
+    private UserMapper userMapper;
+
+
+    @Test
+    void addUser() {
+        User user = new User();
+        user.setUsername("lucky");
+        user.setUstatus("enable");
+        userMapper.insert(user);
+    }
+
+    @Test
+    void findUser() {
+        LambdaQueryWrapper<User> queryWrapper = Wrappers.<User>lambdaQuery().eq(User::getUserId, 570597786043547648L);
+        User user = userMapper.selectOne(queryWrapper);
+        System.out.println(user);
+    }
 
     @Test
     void addCourse() {
